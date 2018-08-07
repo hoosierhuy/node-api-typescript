@@ -7,7 +7,7 @@ import { CrmRoutes } from './routes/crmRoutes';
 class App {
     public app: express.Application;
     public routePrv: CrmRoutes = new CrmRoutes();
-    public mongoDbUrl: string = 'mongodb://localhost/CRMdb'; // If CRMdb doesn't exists, this will create a new db called CRMdb
+    public mongoDbUrl: string = 'mongodb://localhost:27017/CRMdb'; // If CRMdb doesn't exists, this will create a new db called CRMdb
 
     constructor() {
         this.app = express();
@@ -26,7 +26,7 @@ class App {
 
     private mongoSetup(): void {
         mongoose.Promise = global.Promise;
-        mongoose.connect(this.mongoDbUrl);
+        mongoose.connect(this.mongoDbUrl, { useNewUrlParser: true });
     }
 }
 
